@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codejcd.mapper.ClientMapper">
+	<select id="selectClient" parameterType="com.codejcd.entity.Client" resultType="com.codejcd.entity.Client" >
+		SELECT client_seq as clientSeq
+			, client_id as clientId
+			, client_secret as clientSecret
+  			, status as status
+  			, reg_date as regDate
+  		 FROM oauth_client
+  		WHERE client_seq = #{clientSeq}  	 
+	</select>
+	<insert id="registClient" parameterType="com.codejcd.entity.Client" keyProperty="clientSeq" useGeneratedKeys="true" >
+		INSERT INTO oauth_client
+		(
+			client_seq
+			, client_id 
+			, client_secret 
+  			, status 
+  			, reg_date 
+		) VALUES
+		(
+			#{clientSeq}
+			, #{clientId}
+			, #{clientSecret}
+			, 'A'
+			, now()
+		)
+	</insert>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.codejcd.mapper.UserMapper">
+     <select id="selectUserByUserId" parameterType="String" resultType="com.codejcd.entity.User" >
+  		SELECT user_seq as userSeq
+  				, user_id as userId
+  				, password as password
+  				, name as name
+  				, status as status
+  				, reg_date as regDate
+  		  FROM user
+  		WHERE user_id = #{userId}  	 
+     </select>
+     <select id="selectUser" parameterType="com.codejcd.entity.User" resultType="com.codejcd.entity.User">
+       	SELECT user_seq as userSeq
+  				, user_id as userId
+  				, password as password
+  				, name as name
+  				, status as status
+  				, reg_date as regDate
+  		  FROM user
+  		 WHERE user_id = #{userId}  
+  		   AND password = #{password}	
+     </select>
+     <insert id="registUser" parameterType="com.codejcd.entity.User" keyProperty="userSeq" useGeneratedKeys="true" >
+		INSERT INTO user
+		(
+			user_seq
+			, user_id 
+			, name
+			, password 
+  			, status 
+  			, reg_date 
+		) VALUES
+		(
+			#{userSeq}
+			, #{userId}
+			, #{name}
+			, #{password}
+			, 'A'
+			, now()
+		)
+	</insert>
+</mapper>
