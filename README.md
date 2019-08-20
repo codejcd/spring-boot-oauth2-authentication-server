@@ -53,7 +53,10 @@ Authorization Code, Implicit, password credential, client credential 중 __passw
   * refresh_token : Bearer Token
   
 # DB 스키마
-https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
 <pre>
 이 프로그램에 사용된 DB 스키마 파일은 src/resource/db/scheme.sql 을 참고해주세요.
+
+https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
+위 URL은 Springboot Oauth2 의 DB 스키마 샘플이며 참고하시기 바랍니다.
 </pre>
+
