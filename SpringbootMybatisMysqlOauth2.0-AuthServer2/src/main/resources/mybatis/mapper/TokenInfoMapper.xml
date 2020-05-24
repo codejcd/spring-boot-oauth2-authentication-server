@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codejcd.mapper.TokenInfoMapper">
+	<select id="selectTokenInfoByTokenType" parameterType="com.codejcd.entity.TokenInfo"  resultType="com.codejcd.entity.TokenInfo">
+		SELECT token_info_seq AS tokenInfoSeq
+			  , token_type AS tokenType
+			  , secret_key AS secretKey
+			  , expire_day AS expireDay
+			  , expire_hour AS expireHour
+			  , issuer AS issuer
+			  , audience AS audience
+			  , subject AS subject
+  		 FROM token_info
+  		WHERE token_type = #{tokenType} 
+  	</select> 
+</mapper>
