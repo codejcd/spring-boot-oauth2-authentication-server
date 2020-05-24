@@ -4,10 +4,10 @@ Spring-boot-oauth2-AuthenticationServer
 # 내용
 스프링 부트 기반 Oauth2 인증 서버.
 Spring-boot-oauth2-AuthenticationServer 에 업로드한 스프링 부트 설정을 이용하지 않고
-JWT와 crypto 라이브러리만 이용하여 Oauth2의 password credential 구현해보았다.
+JWT와 crypto 라이브러리만 이용하여 Oauth2의 password credential 구현.
 Spring boot의 Oauth2는 매우 편리하고 간편하게 Oauth2를 적용 가능하나 실제 비즈니스 환경에서
 여러가지 요구사항을 가미하려다보면 테이블 네임이나 컬럼 네임 같이 사소한 것 하나하나 커스터마이징이 필요할수있을 것 같아
-프로토타입으로 개발을 진행해보았습니다.
+프로토타입으로 개발을 진행.
 
 # 개발 환경
 Spring Boot 2.1.6 / Maven 4.0.0 / Mybatis 2.1.0 / MySQL 5.6
@@ -53,7 +53,10 @@ Authorization Code, Implicit, password credential, client credential 중 __passw
   * refresh_token : Bearer Token
   
 # DB 스키마
-https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
 <pre>
 이 프로그램에 사용된 DB 스키마 파일은 src/resource/db/scheme.sql 을 참고해주세요.
+
+https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
+위 URL은 Springboot Oauth2 의 DB 스키마 샘플이며 참고하시기 바랍니다.
 </pre>
+
