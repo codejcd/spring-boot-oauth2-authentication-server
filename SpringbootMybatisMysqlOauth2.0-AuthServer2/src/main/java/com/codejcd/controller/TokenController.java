@@ -37,7 +37,7 @@ public class TokenController {
 	 * @param password
 	 * @return
 	 */
-    @RequestMapping("/oauth2/token")
+    @RequestMapping("/oauth2/tokens")
     public Response generateToken(@RequestHeader(value="Authorization") String authorization,
     			@RequestParam(value="userId", defaultValue="") String userId,
     			@RequestParam(value="password", defaultValue="") String password) {
@@ -46,13 +46,13 @@ public class TokenController {
     	HashMap<String, Object> result = new HashMap<>(); 
     	
     	try {   
-    		clientService.selectClient(authorization);
+    		clientService.selectClientByClientId(authorization);
     		User user = userService.matchUserPassword(userId, password);
-        	String token = tokenService.getAccessToken(user);
-        	
+        	result = tokenService.getTokens(user);
+
         	response.setResponseCode(MessageProperties.prop("error.code.common.success"));
     		response.setResponseMessage(MessageProperties.prop("error.message.common.success"));
-    		result.put("token", token);
+  
     		response.setResult(result);
     	} catch(CustomException e) {
     		response.setResponseCode(MessageProperties.prop(e.getErrorCode()));
@@ -74,19 +74,20 @@ public class TokenController {
      * @param refreshToken
      * @return
      */
-    @RequestMapping("/oauth2/token/refresh")
+    @RequestMapping("/oauth2/accessToken/refresh")
     public Response refreshToken(@RequestHeader(value="Authorization") String authorization,
 			@RequestParam(value="refreshToken", defaultValue="") String refreshToken) {
     	
     	Response response = new Response();
-    	HashMap<String, Object> result = new HashMap<>(); 
+    	HashMap<String, Object> result = new HashMap<>();
+    	String accessToken = "";
     	try {
-    		clientService.selectClient(authorization);
-    		String token = tokenService.refreshAccessToken(refreshToken);
+    		clientService.selectClientByClientId(authorization);
+    		accessToken = tokenService.refreshAccessToken(refreshToken);
     		
-        	response.setResponseCode("error.code.common.success");
-    		response.setResponseMessage("error.message.common.success");
-    		result.put("token", token);
+        	response.setResponseCode(MessageProperties.prop("error.code.common.success"));
+    		response.setResponseMessage(MessageProperties.prop("error.message.common.success"));
+    		result.put("accessToken", accessToken);
     		response.setResult(result);
       	} catch(CustomException e) {
     		response.setResponseCode(e.getErrorCode());

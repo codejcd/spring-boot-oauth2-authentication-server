@@ -32,6 +32,26 @@ public class DateUtil {
 		return cal.getTime();
 	}
 	
+    public static String addMinute(String dateString, String format, int minute){
+    	Calendar cal = Calendar.getInstance();
+    	SimpleDateFormat formatter = new SimpleDateFormat(format);
+        ParsePosition pos = new ParsePosition(0);
+        cal.setTime(formatter.parse(dateString, pos));
+        cal.add(Calendar.MINUTE,minute);
+
+		return formatter.format(cal.getTime());
+    }
+	
+    public static String addHour(String dateString, String format, int hours){
+    	Calendar cal = Calendar.getInstance();
+    	SimpleDateFormat formatter = new SimpleDateFormat(format);
+        ParsePosition pos = new ParsePosition(0);
+        cal.setTime(formatter.parse(dateString, pos));
+        cal.add(Calendar.HOUR,hours);
+
+		return formatter.format(cal.getTime());
+    }
+	
     public static String addDate(String dateString, String format, int days){
     	Calendar cal = Calendar.getInstance();
     	SimpleDateFormat formatter = new SimpleDateFormat(format);

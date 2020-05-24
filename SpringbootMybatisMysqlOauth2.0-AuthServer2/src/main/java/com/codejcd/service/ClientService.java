@@ -1,7 +1,5 @@
 package com.codejcd.service;
 
-import com.codejcd.entity.Client;
-
 public interface ClientService {
 	/**
 	 * 클라이언트 조회
@@ -9,7 +7,7 @@ public interface ClientService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Client selectClient(String authorization) throws Exception;
+	public void selectClientByClientId(String authorization) throws Exception;
 	
 	/**
 	 * 클라이언트 등록

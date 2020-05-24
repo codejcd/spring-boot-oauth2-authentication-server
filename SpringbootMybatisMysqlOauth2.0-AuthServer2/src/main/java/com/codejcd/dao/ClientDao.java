@@ -15,12 +15,11 @@ public class ClientDao {
 	@Qualifier("sqlSession")
 	private SqlSessionTemplate sqlSession;
 	
-	public Client selectClient(String clientId, String clientSecret) {
+	public Client selectClientByClientId(String clientId) {
 		Client client = new Client();
 		client.setClientId(clientId);
-		client.setClientSecret(clientSecret);
 		
-		return sqlSession.selectOne(NAMESPACE + "selectClient", client); 
+		return sqlSession.selectOne(NAMESPACE + "selectClientByClientId", client); 
 	}
 	
 	public int registClient(String clientId, String clientSecret) {

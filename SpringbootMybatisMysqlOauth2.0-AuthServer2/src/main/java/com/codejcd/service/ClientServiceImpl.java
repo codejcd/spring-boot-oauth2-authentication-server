@@ -22,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
 	private CustomPasswordEncoder passwordEncoder;
 	
 	@Override
-	public Client selectClient(String authorization) throws Exception {
+	public void selectClientByClientId(String authorization) throws Exception {
 		
    		String[] client = null;
 		if (authorization == null || !authorization.toLowerCase().startsWith("basic")) {
@@ -30,18 +30,24 @@ public class ClientServiceImpl implements ClientService {
 					, MessageProperties.prop("error.message.authorization.invalid"));	
 		}
 		
-		 // Authorization: Basic base64credentials
+		// Authorization: Basic base64credentials
 	    String base64Credentials = authorization.substring("Basic".length()).trim();
 	    byte[] credDecoded = Base64.getDecoder().decode(base64Credentials);
 	    String credentials = new String(credDecoded, StandardCharsets.UTF_8);
 	    // credentials = username:password
 	    client = credentials.split(":", 2);
-	    Client resultClient = clientDao.selectClient(client[0], client[1]);
-	    if (null != resultClient) {
+	    Client resultClient = clientDao.selectClientByClientId(client[0]);
+	    if (null == resultClient) {
 			throw new CustomException(MessageProperties.prop("error.code.authorization.invalid")
 					, MessageProperties.prop("error.message.authorization.invalid"));	
 	    }
-		return resultClient;
+
+	    boolean result = passwordEncoder.matches(client[1], resultClient.getClientSecret());
+	    
+		if (!result) {
+			throw new CustomException(MessageProperties.prop("error.code.client.secretkey.invalid")
+					, MessageProperties.prop("error.message.client.secretkey.invalid"));	
+		}
 	}
 	
 	@Override
