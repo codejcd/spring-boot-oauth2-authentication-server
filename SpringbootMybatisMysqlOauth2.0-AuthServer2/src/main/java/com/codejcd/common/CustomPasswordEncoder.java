@@ -7,13 +7,10 @@ import org.springframework.stereotype.Component;
 /**
  * BCrypt Passwodencoder Component
  * BCrypt 의존성이 주입된 passwordencoder
- * @author Jeon
- *
  */
 @Component
 public class CustomPasswordEncoder implements PasswordEncoder {
 	private PasswordEncoder passwordEncoder;
-	
 	
 	public CustomPasswordEncoder() {
 		this.passwordEncoder = new BCryptPasswordEncoder();

@@ -4,7 +4,7 @@ import com.codejcd.entity.User;
 
 public interface UserService {
 	/**
-	 * 유저 조화
+	 * 유저 조회
 	 * @param userId
 	 * @return
 	 * @throws Exception

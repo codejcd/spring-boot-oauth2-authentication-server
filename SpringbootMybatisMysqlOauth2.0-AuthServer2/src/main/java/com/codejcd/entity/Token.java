@@ -1,7 +1,6 @@
 package com.codejcd.entity;
 
 public class Token {
-	
 	private String token;
 	public String getToken() {
 		return token;
@@ -9,6 +8,4 @@ public class Token {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	
 }

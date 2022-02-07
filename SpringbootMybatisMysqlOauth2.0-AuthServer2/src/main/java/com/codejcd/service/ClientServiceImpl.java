@@ -2,10 +2,8 @@ package com.codejcd.service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.codejcd.common.CustomException;
 import com.codejcd.common.CustomPasswordEncoder;
 import com.codejcd.common.MessageProperties;
@@ -22,7 +20,7 @@ public class ClientServiceImpl implements ClientService {
 	private CustomPasswordEncoder passwordEncoder;
 	
 	@Override
-	public void selectClientByClientId(String authorization) throws Exception {
+	public void checkClientByClientId(String authorization) throws Exception {
 		
    		String[] client = null;
 		if (authorization == null || !authorization.toLowerCase().startsWith("basic")) {

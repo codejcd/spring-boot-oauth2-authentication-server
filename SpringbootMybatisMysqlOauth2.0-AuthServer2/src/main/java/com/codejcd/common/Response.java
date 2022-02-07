@@ -1,8 +1,6 @@
 package com.codejcd.common;
 
 /**
- * Customize Response
- * @author Jeon
  * 커스터마이징 응답 객체
  */
 public class Response {

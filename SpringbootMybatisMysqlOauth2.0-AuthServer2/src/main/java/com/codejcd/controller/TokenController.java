@@ -2,16 +2,13 @@ package com.codejcd.controller;
 
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.codejcd.common.CustomException;
 import com.codejcd.common.MessageProperties;
 import com.codejcd.common.Response;
-
 import com.codejcd.entity.User;
 import com.codejcd.service.ClientService;
 import com.codejcd.service.TokenService;
@@ -46,13 +43,14 @@ public class TokenController {
     	HashMap<String, Object> result = new HashMap<>(); 
     	
     	try {   
-    		clientService.selectClientByClientId(authorization);
+    		// Basic Auth 검증 
+    		clientService.checkClientByClientId(authorization);
+    		// User 검증
     		User user = userService.matchUserPassword(userId, password);
+    		// 토큰 생성
         	result = tokenService.getTokens(user);
-
         	response.setResponseCode(MessageProperties.prop("error.code.common.success"));
     		response.setResponseMessage(MessageProperties.prop("error.message.common.success"));
-  
     		response.setResult(result);
     	} catch(CustomException e) {
     		response.setResponseCode(MessageProperties.prop(e.getErrorCode()));
@@ -82,7 +80,7 @@ public class TokenController {
     	HashMap<String, Object> result = new HashMap<>();
     	String accessToken = "";
     	try {
-    		clientService.selectClientByClientId(authorization);
+    		clientService.checkClientByClientId(authorization);
     		accessToken = tokenService.refreshAccessToken(refreshToken);
     		
         	response.setResponseCode(MessageProperties.prop("error.code.common.success"));
