@@ -88,8 +88,8 @@ public class TokenServiceImpl implements TokenService {
 		byte[] secretKeyBytes = DatatypeConverter.parseBase64Binary(Base64.encodeBase64String(ACCESS_TOKEN_SECRET_KEY.getBytes()));
 		Key signKey = new SecretKeySpec(secretKeyBytes, signatureAlgorithm.getJcaName());
 		
-		//String strExpiration = DateUtil.addHour(DateUtil.getNow(DateUtil.YYYYMMDDHHmm), DateUtil.YYYYMMDDHHmm, Integer.parseInt(ACCESS_TOKEN_EXPIRE_DAY));
-		String strExpiration = DateUtil.addMinute(DateUtil.getNow(DateUtil.YYYYMMDDHHmm), DateUtil.YYYYMMDDHHmm, 1);
+		String strExpiration = DateUtil.addHour(DateUtil.getNow(DateUtil.YYYYMMDDHHmm), DateUtil.YYYYMMDDHHmm, Integer.parseInt(ACCESS_TOKEN_EXPIRE_DAY));
+		//String strExpiration = DateUtil.addMinute(DateUtil.getNow(DateUtil.YYYYMMDDHHmm), DateUtil.YYYYMMDDHHmm, 1);
 		
 		Date expiration = DateUtil.getDate(strExpiration, DateUtil.YYYYMMDDHHmm);
 		//System.out.println("strExp : " + expiration);

@@ -11,6 +11,19 @@ ENGINE=InnoDB
 AUTO_INCREMENT=5
 ;
 
+CREATE TABLE `oauth_refresh_token` (
+	`token_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`token` MEDIUMBLOB NULL DEFAULT NULL,
+	`authentication` MEDIUMBLOB NULL DEFAULT NULL,
+	PRIMARY KEY (`token_id`) USING BTREE
+)
+COMMENT='리프레시 토큰 테이블'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=15
+;
+
+
 CREATE TABLE `user` (
 	`user_seq` INT(11) NOT NULL AUTO_INCREMENT,
 	`user_id` VARCHAR(100) NULL DEFAULT NULL,
